@@ -50,7 +50,7 @@ class MouvementStockController extends Controller
             'note' => $request->note,
         ]);
         
-        $alerte = $produit->quantite <= $produit->stock_mini
+        $alerte = $produit->quantite <= $produit->stock_mini;
              return response()->json([
                      'message' => 'Enregistrement effectuer avec succes',
                      'mouvementStock' => $mouvementStock,

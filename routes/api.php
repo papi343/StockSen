@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FournisseurController;
 use App\Http\Controllers\Admin\ProduitController;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\MouvementStockController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -19,10 +20,10 @@ Route::apiResource('produits',ProduitController::class);
 Route::post('register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login']);
 Route::middleware('auth:sanctum')->post('logout',[AuthController::class,'logout']);
-Route::middleware('auth:sanctum')->group(function(){
+// Route::group(function(){
     Route::get('mouvementStocks', [MouvementStockController::class, 'index']);
     Route::get('mouvementStocks/{id}', [MouvementStockController::class, 'show']);
     Route::post('mouvementStocks', [MouvementStockController::class, 'store']);
     Route::put('mouvementStocks/{id}', [MouvementStockController::class, 'update']);
     Route::delete('mouvementStocks/{id}', [MouvementStockController::class, 'destroy']);
-});
+// });
