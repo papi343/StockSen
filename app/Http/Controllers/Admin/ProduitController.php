@@ -35,9 +35,8 @@ class ProduitController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Produit $produit)
     {
-        $produit = Produit::find($id);
         return response()->json([
             'message' => 'Produit trouver avec succes',
             'date' => $produit
@@ -47,16 +46,23 @@ class ProduitController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Produit $produit)
     {
-        //
+        $produit->update($request->validated());
+        return response()->json([
+            'message' => 'Produit mise a jour avec succes',
+            'date' => $produit
+        ],200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Produit $produit)
     {
-        //
+        $produit->delete();
+        return response()->json([
+            'message' => ' Produit supprime avec succes'
+        ],200);
     }
 }

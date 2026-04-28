@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
+use App\Models\MouvementStock;
+use App\Models\Fournisseur;
 
 class Produit extends Model
 {
@@ -20,5 +22,9 @@ class Produit extends Model
         return $this->belongsTo(Fournisseur::class);
     }
 
+    public function mouvementStock()
+    {
+        return $this->hasMany(MouvementStock::class);
+    }
 
 }
