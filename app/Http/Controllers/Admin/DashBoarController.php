@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Produit;
+use App\Models\MouvementStock; 
+use Illuminate\Database\Eloquent\Builder;
+
 
 class DashBoarController extends Controller
 {
@@ -12,12 +16,14 @@ class DashBoarController extends Controller
      */
     public function index()
     {
-        $totatProduit = Produit::count();
+        $totalProduit = Produit::count();
+        $totalFournisseur = Fournisseur::count();
+        $totalCategorie = Category::count();
         $alertStockFaible = Produit::where('quantite','<=','stock_mini')->get();
         $totalEntree = MouvementStock::where('type','entree')->sum('quantite');
-        $totalSortie = MouvementStock::where('type''sortie')->sum('quantite');
+        $totalSortie = MouvementStock::where('type','sortie')->sum('quantite');
         $dernierMouvement = MouvementStock::with('produits')
-                                            ->lastest()
+                                            ->latest()
                                             ->take(5)
                                             ->get();
         return response()->json([
@@ -28,6 +34,8 @@ class DashBoarController extends Controller
                 'totalEntree' => $totalEntree,
                 'totalSortie' => $totalSortie,
                 'dernierMouvement' => $dernierMouvement,
+                'totalFournisseur' => $totalFournisseur,
+                'totalCategorie' => $totalCategorie,
             ],
         ],200);
     }
