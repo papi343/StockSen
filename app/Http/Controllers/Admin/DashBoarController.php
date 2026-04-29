@@ -35,7 +35,7 @@ class DashBoarController extends Controller
                 'totalSortie' => $totalSortie,
                 'dernierMouvement' => $dernierMouvement,
                 'totalFournisseur' => $totalFournisseur,
-                'totalCategorie' => $totalCategorie,
+                'totalCategorie' => $totalCategorie,gi
             ],
         ],200);
     }
