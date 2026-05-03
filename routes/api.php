@@ -16,7 +16,7 @@ Route::get('/user', function (Request $request) {
 
 
 Route::apiResource('categories',CategoryController::class);
-Route::apiResource('fournisseurs',FournisseurController::class);
+Route::apiResource('fournisseur',FournisseurController::class);
 Route::apiResource('produits',ProduitController::class);
 Route::post('register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login']);
